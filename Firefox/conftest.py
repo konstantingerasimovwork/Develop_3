@@ -4,7 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.service import Service
 from webdriver_manager.firefox import GeckoDriverManager
-from Firefox.data import URL_AUTH, LOGIN_LINK
+from Firefox.data import URL_AUTH, LOGIN_LINK, MAIN_PAGE
 from Firefox.helpers import user_data
 from Firefox.pages.base_page import BasePage
 from Firefox.locators.lk_page_locators import LkPageLocators as lk
@@ -42,7 +42,7 @@ def registration():
 @pytest.fixture(scope="function")
 def login_account(browser, registration):
     base = BasePage(browser)
-    browser.get('https://stellarburgers.nomoreparties.site/')
+    browser.get(MAIN_PAGE)
     base.click_element(lk.LK_BUTTON)
     base.find_element_and_type_text(lk.ENTER_EMAIL,registration['email'])
     base.find_element_and_type_text(lk.ENTER_PASSWORD, registration['password'])
